@@ -29,4 +29,17 @@ def get_bus_trajectory(bus):
     traj_datas = trajectory_data.split("\r\n")
     traj_ab = polyline.decode(traj_datas[1])
     traj_ba = polyline.decode(traj_datas[4])
+    # NOTE: there might be more subtrajectories
     return traj_ab, traj_ba
+
+# stops.txt file format
+# ID;SiriID;Lat;Lng;Stops;Name;Info;Street;Area;City;
+def get_stops():
+    url = "https://transport.tallinn.ee/data/stops.txt"
+    response = requests.get(url)
+    if response.status_code == 200:
+        stops_data = response.text
+    else:
+        raise Exception("Failed to fetch stops data.")
+    lines = [x.strip().split(';') for x in stops_data.split("\n")]
+    return lines
