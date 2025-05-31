@@ -156,12 +156,17 @@ def solve():
     while cur < end:
         prob = probability_late(samples, cur.time())
         times.append(cur)
-        probs.append(prob)
+        probs.append(prob * 100.0)
 
         cur = cur + datetime.timedelta(seconds=1)
 
     print("Plotting solution to solution.png")
     plt.plot(times, probs)
+    plt.title("Probability of being late")
+    plt.xlabel("Departure time")
+    plt.ylabel("Probability (%)")
+    plt.grid(True)
+    plt.tight_layout()
     plt.savefig("solution.png")
     plt.show()
 
