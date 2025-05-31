@@ -8,6 +8,7 @@ import tltdata
 data_directory = "data"
 
 def get_bus_locations(bus, time_point, datafiles):
+    """Return collected data samples before and after specified datetime point."""
     # Find closest file before time_point.
     before_dates = list(filter(lambda x: x[1] <= time_point, datafiles))
     # Find closest file after time_point.
@@ -22,6 +23,7 @@ def get_bus_locations(bus, time_point, datafiles):
     return before_locations, after_locations
 
 def interpolate_bus_trajectory(starttime, endtime, bus, resolution):
+    """Enhances data temporal resolution by linear interpolation. Returns the enhanced trajectory."""
     traj_ab, traj_ba = tltdata.get_bus_trajectory(bus)
     result = []
 
