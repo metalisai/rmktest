@@ -48,7 +48,7 @@ def interpolate_bus_trajectory(starttime, endtime, bus, resolution):
     lineAB = LineString(traj_ab)
     lineBA = LineString(traj_ba)
     while curtime < endtime:
-        curtime = curtime + datetime.timedelta(minutes=1, seconds=resolution)
+        curtime = curtime + datetime.timedelta(seconds=resolution)
 
         #print(curtime)
 
@@ -88,14 +88,20 @@ def interpolate_bus_trajectory(starttime, endtime, bus, resolution):
     return result
             
 
-#interpolate_bus_trajectory(None, None, "83", 5)
+def xx():
+    #interpolate_bus_trajectory(None, None, "83", 5)
 
-start = datetime.datetime(2025, 5, 29, 0, 0, 0)
-end = datetime.datetime(2025, 5, 29, 23, 59, 59)
-relevant_files = get_files_timespan("data", start, end)
+    start = datetime.datetime(2025, 5, 29, 10, 0, 0)
+    end = datetime.datetime(2025, 5, 29, 12, 59, 59)
+    relevant_files = get_files_timespan("data", start, end)
 
-curtime = datetime.datetime.now() - datetime.timedelta(days=2)
-#get_bus_locations("83", curtime, relevant_files)
+    curtime = datetime.datetime.now() - datetime.timedelta(days=2)
+    #get_bus_locations("83", curtime, relevant_files)
 
-locs = interpolate_bus_trajectory(start, end, "83", 5)
-print(locs)
+    locs = interpolate_bus_trajectory(start, end, "83", 5)
+    print(locs)
+
+    import visualize
+    visualize.animate_locations(locs)
+
+#xx()
