@@ -1,6 +1,6 @@
 # The repository
 
-This repository contains solution code for RMK's 2025 data team internship.
+This repository contains solution code for RMK's 2025 data team internship challenge.
 
 ## Challenge
 
