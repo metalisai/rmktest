@@ -74,17 +74,19 @@ def interpolate_bus_trajectory(starttime, endtime, bus, resolution):
             bb = lineAB.project(beforePoint)
             aa = lineAB.project(afterPoint)
             activeLine = lineAB
+            direction = True
             # flip direction if moving backwards in trajectory
             if aa - bb < 0:
                 bb = lineBA.project(beforePoint)
                 aa = lineBA.project(afterPoint)
                 activeLine = lineBA
+                direction = False
             #print(f"{bb} -> {aa}")
 
             curT = bb + progress*(aa-bb)
             #print(f"{vehicleId} {activeLine.interpolate(curT)}")
-            locations.append((vehicleId, activeLine.interpolate(curT)))
-        result.append(locations)
+            locations.append((vehicleId, activeLine.interpolate(curT), direction))
+        result.append((locations, curtime))
     return result
             
 
