@@ -6,6 +6,7 @@ import polyline
 # type - 1 trolley, 2 bus, 3 tram, 7 nightbus
 # vehicletype - Z low
 def get_bus_locations(file, bus):
+    """Given gps.txt file location, return locations of all active busses on specific line number."""
     results = {}
     with open(file, "r") as datafile:
         data = datafile.readlines()
@@ -20,6 +21,7 @@ def get_bus_locations(file, bus):
     return results
 
 def get_bus_trajectory(bus):
+    """Return WGS84 polyline of a specific bus line."""
     url = f"https://transport.tallinn.ee/data/tallinna-linn_bus_{bus}.txt"
     response = requests.get(url)
     if response.status_code == 200:
@@ -35,6 +37,7 @@ def get_bus_trajectory(bus):
 # stops.txt file format
 # ID;SiriID;Lat;Lng;Stops;Name;Info;Street;Area;City;
 def get_stops():
+    """Return all bus stops in Tallinn."""
     url = "https://transport.tallinn.ee/data/stops.txt"
     response = requests.get(url)
     if response.status_code == 200:

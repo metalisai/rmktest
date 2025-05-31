@@ -7,6 +7,9 @@ import cartopy.io.img_tiles as cimgt
 import xyzservices.providers as xyz
 from matplotlib.animation import FuncAnimation
 
+# This code was used to confirm that the interpolation was correct.
+#   Not part of solution.
+
 def animate_locations(locs):
     fig = plt.figure()
 
